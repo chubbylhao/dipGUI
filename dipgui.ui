@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>dipGUI</class>
+ <widget class="QMainWindow" name="dipGUI">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>dipGUI_alpha</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QLabel" name="messageLab">
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+       </font>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Sunken</enum>
+      </property>
+      <property name="text">
+       <string>后续开发区域...</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="File">
+    <property name="title">
+     <string>文件</string>
+    </property>
+    <addaction name="actFileLoad"/>
+    <addaction name="separator"/>
+    <addaction name="actFileClose"/>
+    <addaction name="separator"/>
+    <addaction name="actFileSave"/>
+    <addaction name="separator"/>
+    <addaction name="actFileSaveAs"/>
+    <addaction name="separator"/>
+    <addaction name="actExit"/>
+   </widget>
+   <widget class="QMenu" name="Process">
+    <property name="title">
+     <string>处理</string>
+    </property>
+    <widget class="QMenu" name="menu">
+     <property name="title">
+      <string>颜色空间</string>
+     </property>
+     <addaction name="actProcColorSpaceGray"/>
+     <addaction name="separator"/>
+    </widget>
+    <widget class="QMenu" name="menu_2">
+     <property name="title">
+      <string>空间滤波</string>
+     </property>
+     <addaction name="actSpatialBoxFilt"/>
+     <addaction name="separator"/>
+    </widget>
+    <addaction name="menu"/>
+    <addaction name="separator"/>
+    <addaction name="menu_2"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="Help">
+    <property name="title">
+     <string>帮助</string>
+    </property>
+    <addaction name="actHelpInfo"/>
+   </widget>
+   <widget class="QMenu" name="About">
+    <property name="title">
+     <string>关于</string>
+    </property>
+    <addaction name="actAboutApp"/>
+    <addaction name="separator"/>
+    <addaction name="actAboutMe"/>
+   </widget>
+   <widget class="QMenu" name="Analyze">
+    <property name="title">
+     <string>分析</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="Feature">
+    <property name="title">
+     <string>特征</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="Vedio">
+    <property name="title">
+     <string>视频</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>其它</string>
+    </property>
+    <widget class="QMenu" name="menu_4">
+     <property name="title">
+      <string>图像融合</string>
+     </property>
+     <addaction name="actAvgFusion"/>
+    </widget>
+    <addaction name="menu_4"/>
+   </widget>
+   <addaction name="File"/>
+   <addaction name="Process"/>
+   <addaction name="Analyze"/>
+   <addaction name="Feature"/>
+   <addaction name="Vedio"/>
+   <addaction name="menu_3"/>
+   <addaction name="Help"/>
+   <addaction name="About"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actFileLoad"/>
+   <addaction name="separator"/>
+   <addaction name="actFileClose"/>
+   <addaction name="separator"/>
+   <addaction name="actFileSave"/>
+   <addaction name="separator"/>
+   <addaction name="actFileSaveAs"/>
+   <addaction name="separator"/>
+   <addaction name="actExit"/>
+   <addaction name="separator"/>
+  </widget>
+  <action name="actFileLoad">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/dipGUI/File/images/loadfile.png</normaloff>:/dipGUI/File/images/loadfile.png</iconset>
+   </property>
+   <property name="text">
+    <string>加载文件</string>
+   </property>
+   <property name="toolTip">
+    <string>从本地加载一张图像</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+O</string>
+   </property>
+  </action>
+  <action name="actSpatialBoxFilt">
+   <property name="text">
+    <string>盒式滤波</string>
+   </property>
+   <property name="toolTip">
+    <string>盒式滤波又称均值滤波</string>
+   </property>
+  </action>
+  <action name="actAboutApp">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/dipGUI/About/images/aboutapp.png</normaloff>:/dipGUI/About/images/aboutapp.png</iconset>
+   </property>
+   <property name="text">
+    <string>关于软件</string>
+   </property>
+   <property name="toolTip">
+    <string>关于软件的信息</string>
+   </property>
+  </action>
+  <action name="actAboutMe">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/dipGUI/About/images/aboutme.png</normaloff>:/dipGUI/About/images/aboutme.png</iconset>
+   </property>
+   <property name="text">
+    <string>关于我</string>
+   </property>
+   <property name="toolTip">
+    <string>关于我（开发者）的信息</string>
+   </property>
+  </action>
+  <action name="actHelpInfo">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/dipGUI/Help/images/help.png</normaloff>:/dipGUI/Help/images/help.png</iconset>
+   </property>
+   <property name="text">
+    <string>帮助信息</string>
+   </property>
+   <property name="toolTip">
+    <string>给出一点帮助建议</string>
+   </property>
+  </action>
+  <action name="actProcColorSpaceGray">
+   <property name="text">
+    <string>Grayscale</string>
+   </property>
+   <property name="toolTip">
+    <string>转换为灰度图</string>
+   </property>
+  </action>
+  <action name="actFileClose">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/dipGUI/File/images/closefile.png</normaloff>:/dipGUI/File/images/closefile.png</iconset>
+   </property>
+   <property name="text">
+    <string>关闭文件</string>
+   </property>
+   <property name="toolTip">
+    <string>关闭已打开的图像</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+C</string>
+   </property>
+  </action>
+  <action name="actExit">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/dipGUI/File/images/exit.png</normaloff>:/dipGUI/File/images/exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>退出</string>
+   </property>
+   <property name="toolTip">
+    <string>退出程序</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+Q</string>
+   </property>
+  </action>
+  <action name="actFileSave">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/dipGUI/File/images/savefile.png</normaloff>:/dipGUI/File/images/savefile.png</iconset>
+   </property>
+   <property name="text">
+    <string>保存文件</string>
+   </property>
+   <property name="toolTip">
+    <string>在默认路径保存图像</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="actFileSaveAs">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/dipGUI/File/images/saveasfile.png</normaloff>:/dipGUI/File/images/saveasfile.png</iconset>
+   </property>
+   <property name="text">
+    <string>文件另存为</string>
+   </property>
+   <property name="toolTip">
+    <string>将图像另存为</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S, Ctrl+Shift+A</string>
+   </property>
+  </action>
+  <action name="actAvgFusion">
+   <property name="text">
+    <string>均值融合</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
+ <connections/>
+</ui>

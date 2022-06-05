@@ -1,0 +1,27 @@
+<RCC>
+    <qresource prefix="/imgview">
+        <file>images/adapt.png</file>
+        <file>images/zoomin.png</file>
+        <file>images/zoomout.png</file>
+        <file>images/restore.png</file>
+        <file>images/originalsize.png</file>
+        <file>images/stretch.png</file>
+    </qresource>
+    <qresource prefix="/dipGUI/About">
+        <file>images/aboutapp.png</file>
+        <file>images/aboutme.png</file>
+    </qresource>
+    <qresource prefix="/dipGUI/Help">
+        <file>images/help.png</file>
+    </qresource>
+    <qresource prefix="/dipGUI/File">
+        <file>images/loadfile.png</file>
+        <file>images/closefile.png</file>
+        <file>images/exit.png</file>
+        <file>images/saveasfile.png</file>
+        <file>images/savefile.png</file>
+    </qresource>
+    <qresource prefix="/dipGUI/Process">
+        <file>images/colorspace.png</file>
+    </qresource>
+</RCC>

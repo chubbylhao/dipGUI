@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>imgView</class>
+ <widget class="QMainWindow" name="imgView">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>450</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>400</width>
+    <height>300</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>imgView</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Sunken</enum>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>578</width>
+         <height>343</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QLabel" name="imgViewLab">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>13</pointsize>
+           </font>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Plain</enum>
+          </property>
+          <property name="text">
+           <string>图像显示区域...</string>
+          </property>
+          <property name="scaledContents">
+           <bool>false</bool>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>600</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actRestore"/>
+   <addaction name="separator"/>
+   <addaction name="actAdapt"/>
+   <addaction name="separator"/>
+   <addaction name="actOriginalSize"/>
+   <addaction name="separator"/>
+   <addaction name="actStretch"/>
+   <addaction name="separator"/>
+   <addaction name="actZoomIn"/>
+   <addaction name="separator"/>
+   <addaction name="actZoomOut"/>
+   <addaction name="separator"/>
+  </widget>
+  <action name="actAdapt">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/imgview/images/adapt.png</normaloff>:/imgview/images/adapt.png</iconset>
+   </property>
+   <property name="text">
+    <string>自适应</string>
+   </property>
+   <property name="toolTip">
+    <string>使图像自适应窗口大小</string>
+   </property>
+  </action>
+  <action name="actZoomIn">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/imgview/images/zoomin.png</normaloff>:/imgview/images/zoomin.png</iconset>
+   </property>
+   <property name="text">
+    <string>放大</string>
+   </property>
+   <property name="toolTip">
+    <string>放大图像</string>
+   </property>
+  </action>
+  <action name="actZoomOut">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/imgview/images/zoomout.png</normaloff>:/imgview/images/zoomout.png</iconset>
+   </property>
+   <property name="text">
+    <string>缩小</string>
+   </property>
+   <property name="toolTip">
+    <string>缩小图像</string>
+   </property>
+  </action>
+  <action name="actRestore">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/imgview/images/restore.png</normaloff>:/imgview/images/restore.png</iconset>
+   </property>
+   <property name="text">
+    <string>还原默认</string>
+   </property>
+   <property name="toolTip">
+    <string>将窗口和图像还原至默认大小</string>
+   </property>
+  </action>
+  <action name="actOriginalSize">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/imgview/images/originalsize.png</normaloff>:/imgview/images/originalsize.png</iconset>
+   </property>
+   <property name="text">
+    <string>显示原图</string>
+   </property>
+   <property name="toolTip">
+    <string>以图像的原大小显示</string>
+   </property>
+  </action>
+  <action name="actStretch">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/imgview/images/stretch.png</normaloff>:/imgview/images/stretch.png</iconset>
+   </property>
+   <property name="text">
+    <string>铺满窗口</string>
+   </property>
+   <property name="toolTip">
+    <string>将图像铺满窗口</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
+ <connections/>
+</ui>
