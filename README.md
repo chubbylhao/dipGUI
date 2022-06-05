@@ -26,3 +26,6 @@
 
 ![](https://raw.githubusercontent.com/chubbylhao/myPics/main/dipGUI/multi.gif)
 
+- ##### 其它杂项
+
+![](https://raw.githubusercontent.com/chubbylhao/myPics/main/dipGUI/about.gif)
