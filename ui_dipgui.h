@@ -37,6 +37,8 @@ public:
     QAction *actFileSave;
     QAction *actFileSaveAs;
     QAction *actAvgFusion;
+    QAction *actSpatialGaussFilt;
+    QAction *actSpatialMedianFilt;
     QWidget *centralwidget;
     QGridLayout *gridLayout;
     QLabel *messageLab;
@@ -106,6 +108,10 @@ public:
         actFileSaveAs->setIcon(icon7);
         actAvgFusion = new QAction(dipGUI);
         actAvgFusion->setObjectName(QString::fromUtf8("actAvgFusion"));
+        actSpatialGaussFilt = new QAction(dipGUI);
+        actSpatialGaussFilt->setObjectName(QString::fromUtf8("actSpatialGaussFilt"));
+        actSpatialMedianFilt = new QAction(dipGUI);
+        actSpatialMedianFilt->setObjectName(QString::fromUtf8("actSpatialMedianFilt"));
         centralwidget = new QWidget(dipGUI);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         gridLayout = new QGridLayout(centralwidget);
@@ -180,6 +186,9 @@ public:
         menu->addSeparator();
         menu_2->addAction(actSpatialBoxFilt);
         menu_2->addSeparator();
+        menu_2->addAction(actSpatialGaussFilt);
+        menu_2->addSeparator();
+        menu_2->addAction(actSpatialMedianFilt);
         Help->addAction(actHelpInfo);
         About->addAction(actAboutApp);
         About->addSeparator();
@@ -261,6 +270,14 @@ public:
         actFileSaveAs->setShortcut(QCoreApplication::translate("dipGUI", "Ctrl+Shift+S, Ctrl+Shift+A", nullptr));
 #endif // QT_CONFIG(shortcut)
         actAvgFusion->setText(QCoreApplication::translate("dipGUI", "\345\235\207\345\200\274\350\236\215\345\220\210", nullptr));
+        actSpatialGaussFilt->setText(QCoreApplication::translate("dipGUI", "\351\253\230\346\226\257\346\273\244\346\263\242", nullptr));
+#if QT_CONFIG(tooltip)
+        actSpatialGaussFilt->setToolTip(QCoreApplication::translate("dipGUI", "\351\253\230\346\226\257\346\273\244\346\263\242", nullptr));
+#endif // QT_CONFIG(tooltip)
+        actSpatialMedianFilt->setText(QCoreApplication::translate("dipGUI", "\344\270\255\345\200\274\346\273\244\346\263\242", nullptr));
+#if QT_CONFIG(tooltip)
+        actSpatialMedianFilt->setToolTip(QCoreApplication::translate("dipGUI", "\344\270\255\345\200\274\346\273\244\346\263\242", nullptr));
+#endif // QT_CONFIG(tooltip)
         messageLab->setText(QCoreApplication::translate("dipGUI", "\345\220\216\347\273\255\345\274\200\345\217\221\345\214\272\345\237\237...", nullptr));
         File->setTitle(QCoreApplication::translate("dipGUI", "\346\226\207\344\273\266", nullptr));
         Process->setTitle(QCoreApplication::translate("dipGUI", "\345\244\204\347\220\206", nullptr));

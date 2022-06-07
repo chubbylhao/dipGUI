@@ -78,6 +78,9 @@
      </property>
      <addaction name="actSpatialBoxFilt"/>
      <addaction name="separator"/>
+     <addaction name="actSpatialGaussFilt"/>
+     <addaction name="separator"/>
+     <addaction name="actSpatialMedianFilt"/>
     </widget>
     <addaction name="menu"/>
     <addaction name="separator"/>
@@ -286,6 +289,22 @@
   <action name="actAvgFusion">
    <property name="text">
     <string>均值融合</string>
+   </property>
+  </action>
+  <action name="actSpatialGaussFilt">
+   <property name="text">
+    <string>高斯滤波</string>
+   </property>
+   <property name="toolTip">
+    <string>高斯滤波</string>
+   </property>
+  </action>
+  <action name="actSpatialMedianFilt">
+   <property name="text">
+    <string>中值滤波</string>
+   </property>
+   <property name="toolTip">
+    <string>中值滤波</string>
    </property>
   </action>
  </widget>

@@ -14,6 +14,8 @@ dipGUI::dipGUI(QWidget* parent)
     // 在堆上创建
     IV_w = new imgView;
     IP_w = new imgView;
+    filt_dlg = new FilterDialog(this);
+    filt_dlg->setWindowModality(Qt::ApplicationModal);  // 弹出对话框时其它窗口不可用
 
     // 禁用某些功能
     disabled_dip_function();
@@ -27,6 +29,12 @@ dipGUI::dipGUI(QWidget* parent)
     // 显示处理后的图像
     connect(this, SIGNAL(pass_qimage_data_signal(const QImage&)), IP_w, \
             SLOT(pass_qimage_data_slot(const QImage&)));
+
+    // 连接滤波小窗口
+    connect(filt_dlg, SIGNAL(pass_filter_parameters_signal(const FilterParms&)), \
+            this, SLOT(pass_filter_parameters_slot(const FilterParms&)));
+    connect(this, SIGNAL(open_gauss_sigma_signal()), \
+            filt_dlg, SLOT(open_gauss_sigma_slot()));
 
     /* **************信号与槽的连接**************** */
 }
@@ -45,15 +53,21 @@ dipGUI::~dipGUI()
 // 禁用图像处理功能
 void dipGUI::disabled_dip_function()
 {
+    // 使用ui->actProcColorSpaceGray->setDisabled(true);也行
     ui->actProcColorSpaceGray->setEnabled(false);
     ui->actSpatialBoxFilt->setEnabled(false);
+    ui->actSpatialGaussFilt->setEnabled(false);
+    ui->actSpatialMedianFilt->setEnabled(false);
 }
 
 // 启用图像处理功能
 void dipGUI::enabled_dip_function()
 {
+    // 使用ui->actProcColorSpaceGray->setDisabled(false);也行
     ui->actProcColorSpaceGray->setEnabled(true);
     ui->actSpatialBoxFilt->setEnabled(true);
+    ui->actSpatialGaussFilt->setEnabled(true);
+    ui->actSpatialMedianFilt->setEnabled(true);
 }
 
 // 将Mat类型转化为QImage类型
@@ -101,9 +115,6 @@ void dipGUI::on_actFileLoad_triggered() // 加载图像action的槽函数
     img_clear();
     vector_clear();
 
-    // 启用某些功能
-    enabled_dip_function();
-
     // 从资源管理器中读图
     QString imagePath = QFileDialog::getOpenFileName\
             (IV_w, "", "/", "Image Files (*.jpg *.png *.tif);;(All(*.*))");
@@ -112,7 +123,11 @@ void dipGUI::on_actFileLoad_triggered() // 加载图像action的槽函数
         qDebug() << "资源管理器未能成功加载图像...";
         return;
     }
-    cv_original_img = cv::imread(imagePath.toLatin1().data(), cv::IMREAD_UNCHANGED);
+
+    // 启用某些功能
+    enabled_dip_function();
+
+    cv_original_img = cv::imread(imagePath.toLatin1().data(), cv::IMREAD_UNCHANGED);    // 注意，这是BGR类型
     if (!cv_original_img.data)
     {
         qDebug() << "OpenCV加载图像时发生错误...";
@@ -250,6 +265,63 @@ void dipGUI::on_actProcColorSpaceGray_triggered()
     qt_im2gray();
     mat_to_qimage();
     emit pass_qimage_data_signal(qt_img);
+}
+
+// 处理滤波器参数设置的弹窗
+void dipGUI::pass_filter_parameters_slot(const FilterParms& size_sigma)
+{
+    this->size_sigma = size_sigma;
+}
+
+// 盒式滤波的响应槽函数
+void dipGUI::on_actSpatialBoxFilt_triggered()
+{
+    filt_dlg->show();
+    filt_dlg->exec();   // 等待弹窗响应（在此阻塞）
+    if (this->size_sigma.ok_cancel)
+    {
+        qt_im2gray();
+        cv::boxFilter(cv_img, cv_img, -1, cv::Size(this->size_sigma.win_size,\
+                                                   this->size_sigma.win_size));
+        // 使用blur也可实现盒式滤波
+/*        cv::blur(cv_img, cv_img, cv::Size(this->size_sigma.win_size,\
+                                          this->size_sigma.win_size));
+*/
+        mat_to_qimage();
+        emit pass_qimage_data_signal(qt_img);
+    }
+}
+
+// 高斯滤波的响应槽函数
+void dipGUI::on_actSpatialGaussFilt_triggered()
+{
+    emit open_gauss_sigma_signal();
+    filt_dlg->show();
+    filt_dlg->exec();   // 等待弹窗响应（在此阻塞）
+    if (this->size_sigma.ok_cancel)
+    {
+        qt_im2gray();
+        cv::GaussianBlur(cv_img, cv_img, \
+                         cv::Size(this->size_sigma.win_size,\
+                                  this->size_sigma.win_size), \
+                         this->size_sigma.sigma); // sigmaY的值由sigmaX的值自动确定（默认二者相等）
+        mat_to_qimage();
+        emit pass_qimage_data_signal(qt_img);
+    }
+}
+
+// 中值滤波的响应槽函数
+void dipGUI::on_actSpatialMedianFilt_triggered()
+{
+    filt_dlg->show();
+    filt_dlg->exec();   // 等待弹窗响应（在此阻塞）
+    if (this->size_sigma.ok_cancel)
+    {
+        qt_im2gray();
+        cv::medianBlur(cv_img, cv_img, this->size_sigma.win_size);
+        mat_to_qimage();
+        emit pass_qimage_data_signal(qt_img);
+    }
 }
 
 /* **************************图像处理部分***************************** */

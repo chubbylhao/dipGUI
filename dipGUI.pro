@@ -16,16 +16,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    filterdialog.cpp \
     imgview.cpp \
     main.cpp \
     dipgui.cpp
 
 HEADERS += \
     dipgui.h \
+    filterdialog.h \
     imgview.h
 
 FORMS += \
     dipgui.ui \
+    filterdialog.ui \
     imgview.ui
 
 # Default rules for deployment.
